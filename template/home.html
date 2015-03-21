@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title> Home </title>
+    </head>
+    <body>
+        <div id = "header">
+            <a href="home.html">Home</a> <a href="profile.html">Profile</a>
+            <a href="/forum/qaform/">Post your Question</a> <a href="reg.html">logout</a>
+        </div>
+        {% for i in l %}
+        <p>{{i}}</p>
+        {% endfor %}
+    </body>
+</html>    
