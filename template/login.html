@@ -1,29 +1,21 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Login</title>
-		<style>
-			#login { width : 20%; height :50%; border : solid;}
-			.reg-submit{
-				font-weight: bold;
-				font-family: sans-serif;
-				border:none;
-				height: 50px;
-				width: 80%;
-				background-color: #1abc9c;
-				color:#ffffff;
-				border:1px;
-				border-radius:10px;
-					}
-				
-		</style>
-	</head>
-	<body>
-		<div id = "login">
-			<form name = "login">
-				<p><input name="reg_mail" type= "textfield" placeholder = "Your Email Address">
-				<p><input name="reg_pwd" type = "password" placeholder= "Password"/>
-				<p><input class = "login-submit" name="reg_submit" type = "submit" value="LOGIN"/>
-			</form>
-		</div>	
-		
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Login</title>
+    </head>
+
+    <body>
+        <h1>Login to Rango</h1>
+
+        <form id="login_form" method="post" action="/forum/login/">
+            {% csrf_token %}
+            {{login_form.as_p}}
+
+            <input type="submit" value="submit" />
+           
+           <a href="/forum/reset_password/" >Forgot password ?</a>
+        </form>
+
+    </body>
 </html>

@@ -1,0 +1,13 @@
+<html>
+<body>
+<form action="/forum/changepassword/" method="POST">
+   {% csrf_token %}
+<input type="password" placeholder="old passsword" name="opwd"><br/>
+<input type="password" placeholder="new password" name="npwd"><br/>
+
+<input type="submit" value="change">
+</form>
+</body>
+</html> 
+
+
