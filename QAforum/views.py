@@ -137,7 +137,7 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/forum/register')
+    return HttpResponseRedirect('/forum/login')
     
 @login_required    
 def profile(request):
