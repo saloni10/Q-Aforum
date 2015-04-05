@@ -3,19 +3,31 @@
     <head>
         <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" />
     </head>
-
     <body>
-        <h1>Login </h1>
-
-        <form id="login_form" method="post" action="/forum/login/">
-            {% csrf_token %}
-            {{login_form.as_p}}
-
-            <input type="submit" value="submit" />
-           
-           <a href="/forum/reset_password/" >Forgot password ?</a>
-        </form>
-
+        <div class="container">
+            <!-- Codrops top bar -->
+            <header class="heading">
+                <span>Q-AForum</span>
+            </header>
+            <div id="wrapper">
+            <div id="login" class="animate form">
+                <form id="login_form" method="post" action="/forum/login/">
+                    <h1>Log in</h1> 
+                    {% csrf_token %}
+                    {{login_form.as_p}}
+                    <p class="login button"> 
+                        <input type="submit" value="Login" />
+                    </p>
+                    <p class="change_link">
+					    Not a member yet ?
+						<a href="/forum/register/" class="to_register">Join us</a>
+					</p>
+           <!--<a href="/forum/reset_password/" >Forgot password ?</a>-->
+                </form>
+            </div>
+            </div> 
+         </div>
     </body>
 </html>

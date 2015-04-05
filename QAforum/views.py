@@ -17,8 +17,8 @@ from django.contrib.auth import logout
 #def register(request):
  #   return render(request,'reg.html')
 
-def main(request):
-    return render(request,'main.html')
+#def main(request):
+ #   return render(request,'main.html')
     
 def register(request):
     # Like before, get the request's context.
@@ -85,7 +85,7 @@ def user_login(request):
     context = RequestContext(request)
 
     # If the request is a HTTP POST, try to pull out the relevant information.
-    if request.method == 'POST':
+    if request.method == 'POST' and not request.user.is_authenticated():
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
         login_form = LoginForm(data=request.POST)
@@ -108,13 +108,16 @@ def user_login(request):
                 return HttpResponseRedirect('/forum/home/')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Your Rango account is disabled.")
+                return HttpResponse("Your account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
             print login_form.errors
             print "Invalid login details: {0}, {1}".format(username, password)
             return HttpResponse("Invalid login details supplied.")
 
+    elif request.method == 'POST' and request.user.is_authenticated():
+        return HttpResponseRedirect("/forum/home/")
+    
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
     else:

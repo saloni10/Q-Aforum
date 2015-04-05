@@ -7,7 +7,7 @@ urlpatterns = patterns('',
 	
 	url(r'^question/', views.question),
 	url(r'^home/', views.home,name='home' ),
-	url(r'^main/', views.main,name='main' ),
+	#url(r'^main/', views.main,name='main' ),
 	url(r'^qaform/', views.display,name='post' ),
 	url(r'^register/', views.register,name='registration' ),
 	url(r'^login/$', views.user_login, name='login'),

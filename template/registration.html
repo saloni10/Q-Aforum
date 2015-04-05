@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Reg</title>
+        <title>Register</title>
     </head>
-
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" />
+    
     <body>
-        <h1>Register with us</h1> 
+        <div class="container">
+            <!-- Codrops top bar -->
+            <header class="heading">
+                <span>Q-AForum</span>
+            </header>
+            <div id="wrapper">
+            <div id="login" class="animate form">
+        <h1>Register with us !</h1> 
         
         {% if registered %}
         <script> 
         alert('You have registered successfully!\n'+"Login to continue.");
+        window.location = '/forum/login/';
         </script>
-        <a href="/forum/login/">Login.</a><br />
         {% else %}
-        <strong>register here!</strong><br />
+        <p> </p>
+        
 
         <form id="user_form" method="post" action="/forum/register/"
                 enctype="multipart/form-data">
@@ -27,8 +36,13 @@
             {{ profile_form.as_p }}
 
             <!-- Provide a button to click to submit the form. -->
+            <p class="reg button"> 
             <input type="submit" name="submit" value="Register" />
+            </p>
         </form>
         {% endif %}
+        </div>
+        </div>
+        </div>
     </body>
 </html>

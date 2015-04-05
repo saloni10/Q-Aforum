@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = ('/home/saloni/forum/template',)
 ALLOWED_HOSTS = []
 
+MEDIA_ROOT = '/home/saloni/forum/QAforum/media/'
+MEDIA_URL = '/media/'
 
 # Application definition
 
@@ -85,4 +87,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/home/saloni/forum/QAforum/static/'
