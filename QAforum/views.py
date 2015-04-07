@@ -12,6 +12,7 @@ from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib import messages
 # Create your views here.
 
 #def register(request):
@@ -19,6 +20,8 @@ from django.contrib.auth import logout
 
 #def main(request):
  #   return render(request,'main.html')
+ 
+
     
 def register(request):
     # Like before, get the request's context.
@@ -33,10 +36,10 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
+        profile_form = UserProfileForm(request.POST,request.FILES)
+       # p = UserProfileForm(data=request.FILES)
         # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():# and p.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
 
@@ -54,11 +57,12 @@ def register(request):
             # Did the user provide a profile picture?
             # If so, we need to get it from the input form and put it in the UserProfile model.
             if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
+               # p.picture = request.FILES['picture']
+               # p.save()
+               profile.picture = request.FILES['picture']
             # Now we save the UserProfile model instance.
             profile.save()
-
+                
             # Update our variable to tell the template registration was successful.
             registered = True
 
@@ -83,7 +87,7 @@ def register(request):
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
-
+    logged_in = False
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST' and not request.user.is_authenticated():
         # Gather the username and password provided by the user.
@@ -175,10 +179,13 @@ def home(request):
     question = Question.objects.aggregate(Max('id'))
     a = question['id__max']
     questlist = []
+    extra = []
     for i in range(5):
         q = Question.objects.get(id=(a-i))
+        extra.append(UserProfile.objects.get(user_id = q.user_id_id))
         questlist.append(q)
-    return render(request,'home.html',{'l':questlist})
+        final = zip(questlist,extra)
+    return render(request,'home.html',{'final':final})
 
 def display(request):
     return render(request,'post.html')
@@ -200,8 +207,3 @@ def question(request):
     
         
         
-        
-        
-           
-
-

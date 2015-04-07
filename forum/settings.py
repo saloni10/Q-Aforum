@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = ('/home/saloni/forum/template',)
 ALLOWED_HOSTS = []
 
-MEDIA_ROOT = '/home/saloni/forum/QAforum/media/'
+MEDIA_ROOT = '/home/saloni/forum/media/'
 MEDIA_URL = '/media/'
 
 # Application definition

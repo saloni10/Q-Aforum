@@ -7,8 +7,11 @@
             <a href="home.html">Home</a> <a href="/forum/profile/">Profile</a>
             <a href="/forum/qaform/">Post your Question</a> <a href="/forum/logout/">logout</a>
         </div>
-        {% for i in l %}
-        <p>{{i}}</p>
+        {% for i,j in final %}
+       
+        <p><img src= "/forum{{j.picture.url}}" width=30 height=30/>  {{i.user_id.username}} {{i}}<br/>
+        {{i.date_created}}</p>
         {% endfor %}
+       
     </body>
 </html>    

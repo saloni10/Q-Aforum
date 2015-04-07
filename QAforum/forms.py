@@ -7,10 +7,10 @@ from django.core.exceptions import ValidationError
 
 class UserForm(forms.ModelForm):
 
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_fname', 'placeholder': 'First Name'}), max_length=20, label='')    
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_lname', 'placeholder': 'Last Name'}), max_length=20, label='')
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_uname', 'placeholder': 'User Name'}), max_length=20, label='')
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class':'reg_mail', 'placeholder': 'Email'}), max_length=20, label='')
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_fname', 'placeholder': 'First Name'}), max_length=50, label='')    
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_lname', 'placeholder': 'Last Name'}), max_length=50, label='')
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_uname', 'placeholder': 'User Name'}), max_length=50, label='')
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class':'reg_mail', 'placeholder': 'Email'}), max_length=50, label='')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'reg_pwd', 'placeholder': 'Your password...'}), max_length=20, label='')
     cpassword = forms.CharField(widget=forms.PasswordInput(attrs={'class':'reg_pwd', 'placeholder': 'Re-enter your password'}), max_length=20, label='')
     
@@ -43,7 +43,7 @@ class LoginForm(forms.ModelForm):
         
 class UserProfileForm(forms.ModelForm):
 
-    website = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_website', 'placeholder': 'Website'}), max_length=20, label='')
+    website = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_website', 'placeholder': 'Website'}), max_length=50, label='')
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
