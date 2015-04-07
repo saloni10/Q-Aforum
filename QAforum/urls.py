@@ -17,6 +17,8 @@ urlpatterns = patterns('',
 	url(r'^profile/$', views.profile, name='profile'),
 	url(r'^changepwd/$', views.changepwd, name='changepwdform'),
     url(r'^changepassword/$', views.changepassword),
+    url(r'^update_profile/$', views.update_profile, name='update_profile'),
+    url(r'^search/$', views.search, name='search'),
 	
 
 	)

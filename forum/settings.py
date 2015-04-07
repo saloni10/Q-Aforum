@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'ihab^x8su%a-sfk_2)x9aj$a*(bg2(&!im7^ki_h$t9y+o2y%)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+AUTH_PROFILE_MODULE = 'QAforum.UserProfile'
 DEBUG = True
 
 TEMPLATE_DEBUG = True

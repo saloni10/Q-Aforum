@@ -5,7 +5,7 @@ from models import *
 from django.db.models import Max
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from forms import UserForm, UserProfileForm, LoginForm
+from forms import UserForm, UserProfileForm, LoginForm, UpdateProfile, UpdateImage
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.template import RequestContext
@@ -155,6 +155,28 @@ def profile(request):
     return render_to_response('profile.html', { 'username':username, 'fname':fname,'lname':lname,'email':email,'obj1':obj1})
     
     
+
+@login_required        
+def update_profile(request):
+    user = User.objects.get(pk=request.user.id)
+    obj1 = UserProfile.objects.get(user=user)
+    if request.POST:
+        user = User.objects.get(pk=request.user.id)
+        obj1 = UserProfile.objects.get(user=user)
+        user.first_name=request.POST.get('first_name')
+        user.last_name=request.POST.get('last_name')
+        user.username=request.POST.get('username')                    
+        user.email=request.POST.get('email') 
+        obj1.picture= request.FILES['picture']
+        obj1.website= request.POST.get('website')
+        
+        user.save()
+        obj1.save()
+        return HttpResponseRedirect('/forum/profile/') 
+    form = UpdateProfile(instance=user)
+    form1 = UpdateImage(instance=obj1)
+    return render_to_response('update_profile.html',{ 'form':form, 'form1':form1},context_instance=RequestContext(request))   
+
 @login_required  
 def changepwd(request):
     return render(request,'changepwdform.html')
@@ -172,6 +194,17 @@ def changepassword(request):
     else:
         return HttpResponse("Enter correct password")
         
+def search(request):
+    error= False
+    if 'key' in request.GET:
+        title= request.GET['key'].strip()
+        if not title:
+            error= True
+        else:
+            obj = Question.objects.filter(title__icontains=title).order_by('date_update')
+            return render(request, 'search.html', {'obj':obj,'title': title} )
+    return render(request, 'search.html', {'error':error}
+     )        
 
     
 def home(request):
@@ -201,9 +234,4 @@ def question(request):
         obj = Question(title=quest,user_id=user,date_created=date_created,date_update=date_updated)
         obj.save()
         return HttpResponse("success")
-        
-        
-
-    
-        
         

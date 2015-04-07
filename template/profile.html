@@ -10,10 +10,12 @@
  Website: {{obj1.website}}</br>
  
  
-
- <img src= "/forum{{obj1.picture.url}}" width=1000 height=1000/>
+ {% if obj1.picture %}
+ <img src= "/forum{{obj1.picture.url}}" width=100 height=100/>
+ {% endif %}
  
  <a href="/forum/changepwd"> Change password </a>
+ <a href="/forum/update_profile"> Edit Profile</a>
 </body>
 </html>
  

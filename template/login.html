@@ -11,7 +11,14 @@
             <header class="heading">
                 <span>Q-AForum</span>
             </header>
+             
             <div id="wrapper">
+            <div id="search">
+            <form method ="get" action= "/forum/search/">
+                <p> <input type="text" placeholder="search here" name= "key" ></p>
+                <p> <input name="search" type="submit" value= "Search"></p>
+                </form>
+                </div>
             <div id="login" class="animate form">
                 <form id="login_form" method="post" action="/forum/login/">
                     <h1>Log in</h1> 
