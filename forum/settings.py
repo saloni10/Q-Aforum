@@ -63,7 +63,7 @@ WSGI_APPLICATION = 'forum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'forum',
+        'NAME':'forum2',
         'USER':'root',
         'PASSWORD':'saloni11',
         'HOST':'localhost',

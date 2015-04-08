@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title> Answer </title>
+    </head>
+    <body>
+        <p><h3>{{q.title}}</p></h3>
+        {% for i in a %}
+            {% if i.answer_text %}
+            <p>{{i.answer_text}}</p>
+            {% endif %}
+        {% endfor %}
+    
+        <form id="ans" method="get" action="/forum/answer/{{q.id}}">
+            <textarea name="answer" rows=10 cols=30>Your Answer...</textarea>
+
+            <input name="ans" type="submit" value="submit"/>
+        </form>
+    </body>
+</html>
+        

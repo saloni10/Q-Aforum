@@ -196,13 +196,17 @@ def changepassword(request):
         
 def search(request):
     error= False
+    questlist= []
+    extra = []
     if 'key' in request.GET:
         title= request.GET['key'].strip()
         if not title:
             error= True
         else:
             obj = Question.objects.filter(title__icontains=title).order_by('date_update')
-            return render(request, 'search.html', {'obj':obj,'title': title} )
+            #extra.append(UserProfile.objects.get(user_id = q.user_id_id))
+            questlist.append(obj)
+            return render(request, 'search.html', {'obj':questlist,'title': title} )
     return render(request, 'search.html', {'error':error}
      )        
 
@@ -211,15 +215,31 @@ def home(request):
     
     question = Question.objects.aggregate(Max('id'))
     a = question['id__max']
-    questlist = []
+    
+    questlist = []    
     extra = []
-    for i in range(5):
+    answerlist=[]
+    for i in range(11):
         q = Question.objects.get(id=(a-i))
         extra.append(UserProfile.objects.get(user_id = q.user_id_id))
+        ans=Answer.objects.filter(question_id_id=q.id).aggregate(Max('id'))
+        an = ans['id__max']
+        
+        if(an>1):
+            first = False
+            eas = Answer.objects.get(id=an)
+       	    answerlist.append(eas)
+        else:
+            first = True
+            answerlist.append('Be the First one to Answer')
+            
+        
         questlist.append(q)
-        final = zip(questlist,extra)
-    return render(request,'home.html',{'final':final})
+        extra.append(UserProfile.objects.get(user_id = q.user_id_id))
+        final = zip(questlist,extra, answerlist)
+    return render(request,'home.html',{'final':final, 'first':first,'an':an})
 
+@login_required
 def display(request):
     return render(request,'post.html')
     
@@ -233,5 +253,27 @@ def question(request):
         date_updated = datetime.datetime.now()
         obj = Question(title=quest,user_id=user,date_created=date_created,date_update=date_updated)
         obj.save()
-        return HttpResponse("success")
+        return HttpResponseRedirect("/forum/home")
         
+def writeans(request,ques_id):
+    quest=Question.objects.get(id=ques_id)
+    
+    anss = Answer.objects.filter(question_id_id=ques_id)
+    return render(request,'ans.html',{'q':quest,'a':anss})
+    
+def answer(request,ques_id):
+    if 'ans' in request.GET:
+        answer = request.GET['answer']
+        ques_obj=Question.objects.get(id=ques_id)
+        user_id= request.user.id
+      
+        user = User.objects.get(id = user_id)
+        obj = Answer(answer_text=answer,user_id=user,question_id_id=ques_id)
+        obj.save()
+        
+        quest=Question.objects.get(id=ques_id)
+        anss = Answer.objects.filter(question_id_id=ques_id)
+        
+        return render(request,'after.html',{'q':quest, 'a':anss})
+        
+

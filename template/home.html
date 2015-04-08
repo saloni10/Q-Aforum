@@ -352,7 +352,9 @@ margin-bottom: 2.0em;
                 <p> <input name="search" type="submit" value= "Search"></p>
                 </form></li>
         <li><a href="/forum/About">About Us</a></li>
-        <li><a href="/forum/qaform/">Post your Question</a></li>
+        <div class="main-nav">
+        <li><a class="cd-signin" href="#0">Post Your Question</a></li>
+         </div>
         <li><a href="/forum/profile/">Profile</a></li>
         <li><a href="/forum/logout">Logout</a></li>
        
@@ -367,12 +369,19 @@ margin-bottom: 2.0em;
         <h3>Welcome to this amazing Forum!!</h3>
         <br><br>
       
-{% for i,j in final %}
+{% for i,j,l in final %}
 
             {% if j.picture %}
         <p><img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/> 
-        {% endif %} {{i.user_id.username}} {{i}}<br/>
-        {{i.date_created}}</p>
+        {% endif %}  
+        Posted by <a href="/forum/profile/">{{i.user_id.username}}</a> on {{i.date_created}}<br/>
+        <a href="/forum/ansform/{{i.id}}">{{i}}</a>
+          <br><br>
+          {% if not first  %}
+          {{l|safe|truncatewords:"50"|linebreaks }}<a href="/forum/ansform/{{i.id}}">read more</a>
+          {% endif %}
+          
+        
         {% endfor %}
        
 

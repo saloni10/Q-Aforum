@@ -24,7 +24,6 @@ class UserProfile(models.Model):
 class Question(models.Model):
    
     user_id = models.ForeignKey(User)
-    
     title = models.CharField(max_length=60)
     date_created = models.DateField(max_length=30)
     date_update = models.DateField(max_length=50)
@@ -35,4 +34,13 @@ class Question(models.Model):
         
     def __unicode__(self):
         return self.title
+        
+class Answer(models.Model):
+    user_id=models.ForeignKey(User)
+    question_id=models.ForeignKey(Question)
+    answer_text=models.CharField(max_length=500)
+    is_anonymous=models.BooleanField(default=False) 
+    def __unicode__(self):
+        return self.answer_text    
+
         
