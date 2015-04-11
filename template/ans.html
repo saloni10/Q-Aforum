@@ -6,7 +6,8 @@
         <p><h3>{{q.title}}</p></h3>
         {% for i in a %}
             {% if i.answer_text %}
-            <p>{{i.answer_text}}</p>
+            
+            <p> {{i.user_id.username}}: <b>{{i.answer_text}}</p></b>
             {% endif %}
         {% endfor %}
     

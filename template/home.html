@@ -4,6 +4,11 @@
 <head>
 <title>nonzero1.0</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/style1.css"> 
+  
 
 <style>
 /*
@@ -335,9 +340,53 @@ margin-bottom: 2.0em;
 
   
 </style>
+<script src="/home/saloni/forum/QAforum/static/js/a.js"></script>
 <script src="styleswitch.js" type="text/javascript"></script>
+
+<script src ="/home/saloni/forum/QAforum/static/js/main.js"> </script>
+<script src ="/home/saloni/forum/QAforum/static/js/modernizr.js"> </script>
 </head>
 <body>
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      
+
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form" method="get" action="/forum/question">
+          <p class="fieldset">
+            
+            <input class="full-width has-padding has-border" id="signin-email" type="text" name="postt" placeholder="Your Question">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          
+
+          <p class="fieldset">
+            <input class="full-width"  type="submit" value="Go">
+          </p>
+        </form>
+        
+        
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      
+
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+       <!-- cd-signup -->
+
+      
+
+        
+
+        
+      <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
 <div id="header">
   <div id="header_inner" class="fixed">
     <div id="logo">
@@ -356,6 +405,7 @@ margin-bottom: 2.0em;
         <li><a class="cd-signin" href="#0">Post Your Question</a></li>
          </div>
         <li><a href="/forum/profile/">Profile</a></li>
+        <li><a href="/forum/recent/">Recent Activity</a></li>
         <li><a href="/forum/logout">Logout</a></li>
        
       </ul>
@@ -369,36 +419,44 @@ margin-bottom: 2.0em;
         <h3>Welcome to this amazing Forum!!</h3>
         <br><br>
       
-{% for i,j,l in final %}
+        {% for i,j,l,k in final %}
 
             {% if j.picture %}
-        <p><img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/> 
-        {% endif %}  
-        Posted by <a href="/forum/profile/">{{i.user_id.username}}</a> on {{i.date_created}}<br/>
-        <a href="/forum/ansform/{{i.id}}">{{i}}</a>
-          <br><br>
-          {% if not first  %}
-          {{l|safe|truncatewords:"50"|linebreaks }}<a href="/forum/ansform/{{i.id}}">read more</a>
-          {% endif %}
-          
-        
+                <p><img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/> 
+            {% endif %}  
+            Posted by {{i.user_id.username}} on {{i.date_created}}<br/>
+            <a href="/forum/ansform/{{i.id}}">{{i}}</a></br>
+            {% if l.answer_text %}
+             Answered by:{{l.user_id.username}}{{l|safe|truncatechars:"40"|linebreaks }}
+             {% elif not l.answer_text %}
+             <p> Be the First one to answer </p>
+             {% endif %}
+            {% ifequal k 1 %}
+            <a href="/forum/ansform/{{i.id}}">View More Answers</a></br></br>
+            {% endifequal %}
         {% endfor %}
-       
-
-         
-<br>
-
-         
-
-          <br>
            
-           <br>
+           <br>  
+           
+           <!-- Next/Prev page links  -->
+        {% if final.object_list and final.paginator.num_pages > 1 %}
+        <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
+            <span class="step-links">
+               <center> {% if final.has_previous %}
+                    <a href= "?page={{ final.previous_page_number }}">Previous &lt;&lt; </a>
+                {% endif %}
 
-          
-          
+                <span class="current">
+                    &nbsp;Page {{ final.number }} of {{ final.paginator.num_pages }}
+                </span>
 
-   
-    
+                {% if final.has_next %}
+                    <a href="?page={{ final.next_page_number }}"> &gt;&gt; Next</a>
+                {% endif %}
+            </center>
+            </span>
+        </div>
+        {% endif %}  
 <div id="footer" class="fixed"> Copyright &copy; 2015  All rights reserved. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>. </div>
 </body>
 </html>

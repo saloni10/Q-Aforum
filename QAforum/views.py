@@ -13,6 +13,10 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.core.urlresolvers import reverse
+from helper import get_query
 # Create your views here.
 
 #def register(request):
@@ -194,50 +198,66 @@ def changepassword(request):
     else:
         return HttpResponse("Enter correct password")
         
-def search(request):
-    error= False
-    questlist= []
-    extra = []
+        
+       
+        
+def search_new(request):
+    extra=[]
+    query_string = ''
+    found_entries = None
     if 'key' in request.GET:
-        title= request.GET['key'].strip()
-        if not title:
-            error= True
-        else:
-            obj = Question.objects.filter(title__icontains=title).order_by('date_update')
-            #extra.append(UserProfile.objects.get(user_id = q.user_id_id))
-            questlist.append(obj)
-            return render(request, 'search.html', {'obj':questlist,'title': title} )
-    return render(request, 'search.html', {'error':error}
-     )        
+        query_string = request.GET['key'].strip()
+        entry_query = get_query(query_string, ['title'])
+        found_entries = Question.objects.filter(entry_query).order_by('date_update')
+        for i in found_entries :
+                extra.append(UserProfile.objects.filter(user = i.user_id_id)) 
+    return render_to_response('search.html',
+            { 'query_string': query_string, 'found_entries': found_entries, 'extra':extra },
+            context_instance=RequestContext(request)
+        ) 
+        
+       
 
     
 def home(request):
     
     question = Question.objects.aggregate(Max('id'))
     a = question['id__max']
-    
+    first = True
+    read = []
     questlist = []    
     extra = []
     answerlist=[]
-    for i in range(11):
-        q = Question.objects.get(id=(a-i))
-        extra.append(UserProfile.objects.get(user_id = q.user_id_id))
-        ans=Answer.objects.filter(question_id_id=q.id).aggregate(Max('id'))
-        an = ans['id__max']
+    read = []
+    for i in range(a+100):
+        if Question.objects.filter(id=(a-i)).exists():    
+            q = Question.objects.get(id=(a-i))
         
-        if(an>1):
-            first = False
-            eas = Answer.objects.get(id=an)
-       	    answerlist.append(eas)
-        else:
-            first = True
-            answerlist.append('Be the First one to Answer')
-            
+            ans=Answer.objects.filter(question_id_id=q.id).aggregate(Max('id'))
+            an = ans['id__max']
         
-        questlist.append(q)
-        extra.append(UserProfile.objects.get(user_id = q.user_id_id))
-        final = zip(questlist,extra, answerlist)
-    return render(request,'home.html',{'final':final, 'first':first,'an':an})
+            if an == None :
+                answerlist.append('Be the First one to Answer')
+                status = 0
+                read.append(status) 
+            else:
+                eas = Answer.objects.get(id=an)
+       	        answerlist.append(eas)
+                status = 1
+                read.append(status)
+            questlist.append(q)
+            extra.append(UserProfile.objects.get(user_id = q.user_id_id))
+            final = zip(questlist,extra, answerlist,read)
+            paginator = Paginator(final, 5)
+
+            try: page = int(request.GET.get("page", '1'))
+            except ValueError: page = 1
+
+            try:
+               final = paginator.page(page)
+            except (InvalidPage, EmptyPage):
+               final = paginator.page(paginator.num_pages)
+    return render(request,'home.html',{'final':final, 'first':first,'as':read})
 
 @login_required
 def display(request):
@@ -245,7 +265,7 @@ def display(request):
     
 def question(request):
     if 'postt' in request.GET:
-        quest = request.GET['quest']
+        quest = request.GET['postt']
         
         user_id= request.user.id
         user = User.objects.get(id = user_id)
@@ -262,6 +282,7 @@ def writeans(request,ques_id):
     return render(request,'ans.html',{'q':quest,'a':anss})
     
 def answer(request,ques_id):
+    usr=[]
     if 'ans' in request.GET:
         answer = request.GET['answer']
         ques_obj=Question.objects.get(id=ques_id)
@@ -273,7 +294,31 @@ def answer(request,ques_id):
         
         quest=Question.objects.get(id=ques_id)
         anss = Answer.objects.filter(question_id_id=ques_id)
+        for i in anss :
+                usr.append(UserProfile.objects.filter(user = i.user_id_id))
         
-        return render(request,'after.html',{'q':quest, 'a':anss})
+        
+        return render(request,'after.html',{'q':quest, 'a':anss,'usr':usr})
+        
+def recent_activity(request):
+    disp=" "
+    l = []
+    obj = User.objects.get(pk=request.user.id)
+    if Question.objects.filter(user_id= obj.id).exists():
+        q = Question.objects.filter(user_id= obj.id)
+        l.append(q)
+    else : 
+        disp = " You have not posted any questions, yet ! "
+    return render (request, 'recent_activity.html', { 'q':l, 'obj': obj,'disp':disp})  
+    
+    
+def delete_ques(request, ques_id):
+    
+    d = Question.objects.filter(user_id = request.user).get(pk=ques_id).delete()
+    
+    return HttpResponseRedirect("/forum/recent/")
+    
+
+    
         
 

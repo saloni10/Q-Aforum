@@ -336,7 +336,9 @@ margin-bottom: 2.0em;
   
 </style>
 <script src="styleswitch.js" type="text/javascript"></script>
+
 </head>
+<body>
 <div id="header">
   <div id="header_inner" class="fixed">
     <div id="logo">
@@ -350,10 +352,11 @@ margin-bottom: 2.0em;
                 <p> <input type="text" placeholder="search here" name= "key" ></p>
                 <p> <input name="search" type="submit" value= "Search"></p>
                 </form></li>
-        
         <li><a href="/forum/About">About Us</a></li>
-        
-        <li><a href="/forum/qaform/">Post your Question</a></li>
+        <div class="main-nav">
+        <li><a class="cd-signin" href="#0">Post Your Question</a></li>
+         </div>
+         <li><a href="/forum/recent/">Recent Activity</a></li>
         <li><a href="/forum/profile/">Profile</a></li>
         <li><a href="/forum/logout">Logout</a></li>
        
@@ -365,37 +368,18 @@ margin-bottom: 2.0em;
   <div id="main_inner" class="fixed">
     <div id="primaryContent_3columns">
       <div id="columnA_3columns">
-        <h3>Search Results :</h3>
-        <br><br>
-      <!--{% for val in obj1 %} 
-        {% for i in val %}
-            {{i}}<br/>
+  
+        <br><br> 
+        <h3> Your Questions </h3>
+        {% for j in q %}
+        {% for i in j %}
+        <a href="/forum/ansform/{{i.id}}">{{i}}</a> Posted On {{i.date_created}} <a href="/forum/delete_ques/{{i.id}}">delete</a><br/> <br/>
         {% endfor %}
-       {% endfor %}-->
-       <div class= "side" style="float:left">
-       {% for i in  extra %}
-        {% for j in i%}
+        {% endfor %}
+        <h3> {{disp}} </h3>
         
-       <img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width="30" height="30"/><br/></br>
-       {% endfor %}
-       {% endfor %}
-       </div>
-       <div class="quest" >
-         {% if found_entries %}
-            {% for title in found_entries %}
-        </br>
-                <a href="/forum/ansform/{{title.id}}">{{title}}</a> Posted by {{title.user_id.username}} on {{title.date_created}}<br/><br/><br/>
            
-		    {% endfor %}
-		{% elif not found_entries %}
-		    <h3> No Results found ! </h3>
-		{% endif %}
-		</div>
-		
-   
-		
-		
-		
-				
+           <br>    
+<div id="footer" class="fixed"> Copyright &copy; 2015  All rights reserved. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>. </div>
 </body>
 </html>

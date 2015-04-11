@@ -18,9 +18,11 @@ urlpatterns = patterns('',
 	url(r'^changepwd/$', views.changepwd, name='changepwdform'),
     url(r'^changepassword/$', views.changepassword),
     url(r'^update_profile/$', views.update_profile, name='update_profile'),
-    url(r'^search/$', views.search, name='search'),
+    url(r'^search/$', views.search_new, name='search'),
     url(r'^ansform/(?P<ques_id>\d+)/', views.writeans),
     url(r'^answer/(?P<ques_id>\d+)/', views.answer),
+    url(r'^recent/$', views.recent_activity, name='recent_activity'),
+    url(r'^delete_ques/(?P<ques_id>\d+)/', views.delete_ques),
 	
 
 	)
