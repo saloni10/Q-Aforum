@@ -3,16 +3,70 @@
     <head>
         <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
         <title>Login</title>
+         <script type="text/javascript">
+<!--
+//preload images
+var image1=new Image()
+image1.src="{{STATIC_URL}}images/about.jpg"
+var image2=new Image()
+image2.src="{{STATIC_URL}}images/b.jpg"
+image2.width="400px"
+var image3=new Image()
+image3.src="{{STATIC_URL}}images/c.jpg"
+var image4=new Image()
+image4.src="{{STATIC_URL}}images/d.png"
+var image5=new Image()
+image5.src="{{STATIC_URL}}images/e.jpg"
+//-->
+</script>
         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" />
+       
     </head>
     <body>
+    
+</script>
+
+
         <div class="container">
             <!-- Codrops top bar -->
             <header class="heading">
                 <span>Q-AForum</span>
             </header>
-             
-            <div id="wrapper">
+                 <a href="javascript:slidelink()">
+
+<div  class="gall"><img style="border:solid 2.5px green;  width:380px; height:300px;"src="{{STATIC_URL}}images/about.jpg" class="gallery" name="slide"  /></a> </div>
+<script type="text/javascript">
+<!--
+var step=1
+var whichimage=1
+function slideit(){
+if (!document.images)
+return
+document.images.slide.src=eval("image"+step+".src")
+
+whichimage=step
+if (step<5)
+step++
+else
+step=1
+setTimeout("slideit()",1800)
+}
+slideit()
+function slidelink(){
+if (whichimage==1)
+window.location="link1.htm"
+else if (whichimage==2)
+window.location="link2.htm"
+else if (whichimage==3)
+window.location="link3.htm"
+else if (whichimage==4)
+window.location="link4.htm"
+else if (whichimage==5)
+window.location="link5.htm"
+}
+//-->
+</script>
+            <div style="float:right" id="wrapper">
             <div id="search">
             <form method ="get" action= "/forum/search/">
                 <p> <input type="text" placeholder="search here" name= "key" ></p>

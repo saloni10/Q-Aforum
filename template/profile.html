@@ -1,8 +1,23 @@
 <html>
 <head>
 <title> profile </title>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
+    
 </head>
 <body>
+
+{% ifequal msg "ok" %}
+<script>
+swal( { title :'<p style="color:black"> Your Profile has been updated successfully !</p>', html : true, timer: 1000, });
+</script>
+{% endifequal %}
+{% ifequal changed "ok" %}
+<script>
+swal( { type: "success" , title :'<p style="color:black"> Your Password has been changed successfully !</p>', html : true, timer: 1000, });
+</script>
+{% endifequal %}
  Name : {{username}}<br/>
  first name : {{fname}}<br/>
  last name : {{lname}}<br/>

@@ -1,9 +1,13 @@
 <html>
     <head>
         <title> Update </title>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
     </head>
     
     <body>
+   
         <form action="/forum/update_profile/" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}

@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Register</title>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
     </head>
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" />
     
@@ -16,10 +19,17 @@
         <h1>Register with us !</h1> 
         
         {% if registered %}
-        <script> 
-        alert('You have registered successfully!\n'+"Login to continue.");
-        window.location = '/forum/login/';
-        </script>
+        <script>
+        swal ({   title: "Success!",   text: "You have Registered Successfully !",   type: "success",   showCancelButton: false,   
+        confirmButtonColor: "#DD6B55",   confirmButtonText: "Login to continue",   
+        cancelButtonText: "No, cancel plx!",   closeOnConfirm: false,   closeOnCancel: false }, 
+        function(isConfirm)
+        {   if (isConfirm)
+         {     window.location = '/forum/login/'  } 
+        else {     swal("Cancelled", "Your imaginary file is safe :)", "error");   } });
+		
+         </script>
+        
         {% else %}
         <p> </p>
         

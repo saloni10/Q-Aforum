@@ -1,5 +1,19 @@
 <html>
+
+<head>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
+    
+</head>
 <body>
+
+{% ifequal changed "wrong" %}
+<h4 style = "color :red" > Enter Correct password </h4>
+<script>
+swal( { type: "error" title :"Enter correct password !", timer: 1000, });
+</script>
+{% endifequal  %}
 <form action="/forum/changepassword/" method="POST">
    {% csrf_token %}
 <input type="password" placeholder="old passsword" name="opwd"><br/>
