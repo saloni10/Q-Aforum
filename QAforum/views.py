@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 import datetime
 from models import *
@@ -25,7 +26,8 @@ from helper import get_query
 #def main(request):
  #   return render(request,'main.html')
  
-
+def about(request):
+    return render(request, 'about.html')
     
 def register(request):
     # Like before, get the request's context.
@@ -149,19 +151,28 @@ def user_logout(request):
     
 @login_required    
 def profile(request):
+    changed = ""
+    msg = " "
     username=request.user.username
     fname=request.user.first_name
     lname=request.user.last_name
     email=request.user.email
     obj = User.objects.get(username=request.user.username)
     obj1 = UserProfile.objects.get(user=obj)
+    if 'msg' in request.GET : 
+        msg = request.GET['msg']
+    if 'changed' in request.GET : 
+        changed = request.GET['changed']
+        
 
-    return render_to_response('profile.html', { 'username':username, 'fname':fname,'lname':lname,'email':email,'obj1':obj1})
+    return render_to_response('profile.html', { 'username':username, 'fname':fname,'lname':lname,'email':email,'obj1':obj1,'msg':msg,'changed':changed})
     
     
 
 @login_required        
 def update_profile(request):
+    
+    
     user = User.objects.get(pk=request.user.id)
     obj1 = UserProfile.objects.get(user=user)
     if request.POST:
@@ -176,17 +187,25 @@ def update_profile(request):
         
         user.save()
         obj1.save()
-        return HttpResponseRedirect('/forum/profile/') 
+        
+        
+        return redirect('/forum/profile/?msg=ok') 
+        #return render(request,'profile.html',{'updated':updated})
     form = UpdateProfile(instance=user)
     form1 = UpdateImage(instance=obj1)
     return render_to_response('update_profile.html',{ 'form':form, 'form1':form1},context_instance=RequestContext(request))   
 
 @login_required  
 def changepwd(request):
+    #changed = " "
+    #if request.POST:
+     #   if 'changed' in request.GET:
+      #      changed = request.GET['changed']
     return render(request,'changepwdform.html')
     
 @login_required   
 def changepassword(request):
+    changed = " "
     user = auth.models.User.objects.get(username=request.user.username)
     opwd=request.POST['opwd']
     pwd=request.POST['npwd']
@@ -194,9 +213,12 @@ def changepassword(request):
         user.set_password(pwd)
         user.save()
         auth.login(request, auth.authenticate(username=request.user.username, password=pwd))
-        return HttpResponse("success")
+        #return HttpResponse("success")
+        return redirect('/forum/profile/?changed=ok') 
     else:
-        return HttpResponse("Enter correct password")
+        #return redirect('/forum/changepwd/?changed=wr')
+        changed = "wrong"
+        return render(request,'changepwdform.html',{'changed':changed})
         
         
        
@@ -225,10 +247,15 @@ def home(request):
     a = question['id__max']
     first = True
     read = []
-    questlist = []    
+    questlist = []
+    ansextra = []    
     extra = []
     answerlist=[]
     read = []
+    posted = ""
+    if 'posted' in request.GET:
+        posted = request.GET['posted']
+        
     for i in range(a+100):
         if Question.objects.filter(id=(a-i)).exists():    
             q = Question.objects.get(id=(a-i))
@@ -243,11 +270,13 @@ def home(request):
             else:
                 eas = Answer.objects.get(id=an)
        	        answerlist.append(eas)
+       	        ansextra.append(UserProfile.objects.get(user_id = eas.user_id))
                 status = 1
                 read.append(status)
             questlist.append(q)
             extra.append(UserProfile.objects.get(user_id = q.user_id_id))
-            final = zip(questlist,extra, answerlist,read)
+            
+            final = zip(questlist,extra,answerlist,read,ansextra)
             paginator = Paginator(final, 5)
 
             try: page = int(request.GET.get("page", '1'))
@@ -257,13 +286,17 @@ def home(request):
                final = paginator.page(page)
             except (InvalidPage, EmptyPage):
                final = paginator.page(paginator.num_pages)
-    return render(request,'home.html',{'final':final, 'first':first,'as':read})
+               
+    return render(request,'home.html',{'posted':posted, 'final':final, 'first':first,'as':read,'ansextra':ansextra,'abc':answerlist})
+
 
 @login_required
 def display(request):
     return render(request,'post.html')
     
+
 def question(request):
+    
     if 'postt' in request.GET:
         quest = request.GET['postt']
         
@@ -273,17 +306,27 @@ def question(request):
         date_updated = datetime.datetime.now()
         obj = Question(title=quest,user_id=user,date_created=date_created,date_update=date_updated)
         obj.save()
-        return HttpResponseRedirect("/forum/home")
+        return HttpResponseRedirect("/forum/home/?posted=ok")
+
         
 def writeans(request,ques_id):
+    ques=[]
+    extra=[]
     quest=Question.objects.get(id=ques_id)
+    ques.append(UserProfile.objects.get(user = quest.user_id))
     
     anss = Answer.objects.filter(question_id_id=ques_id)
-    return render(request,'ans.html',{'q':quest,'a':anss})
+    for i in anss :
+            extra.append(UserProfile.objects.get(user = i.user_id))
+    return render(request,'ans.html',{'q':quest,'a':anss,'ques': ques,'extra':extra})
     
+
 def answer(request,ques_id):
-    usr=[]
-    if 'ans' in request.GET:
+    ques = []
+    extra=[]
+    answered = False
+    if request.method == "GET" and 'ans' in request.GET:
+        answered = True
         answer = request.GET['answer']
         ques_obj=Question.objects.get(id=ques_id)
         user_id= request.user.id
@@ -293,30 +336,36 @@ def answer(request,ques_id):
         obj.save()
         
         quest=Question.objects.get(id=ques_id)
+        ques.append(UserProfile.objects.get(user = quest.user_id))
         anss = Answer.objects.filter(question_id_id=ques_id)
         for i in anss :
-                usr.append(UserProfile.objects.filter(user = i.user_id_id))
+            extra.append(UserProfile.objects.get(user = i.user_id))
+        return render(request,'ans.html',{'q':quest, 'a':anss,'extra':extra,'ques': ques,'answered':answered})
         
-        
-        return render(request,'after.html',{'q':quest, 'a':anss,'usr':usr})
-        
+
 def recent_activity(request):
+    deleted = " "   
     disp=" "
     l = []
     obj = User.objects.get(pk=request.user.id)
+    if 'deleted' in request.GET:
+        deleted = request.GET['deleted']
     if Question.objects.filter(user_id= obj.id).exists():
         q = Question.objects.filter(user_id= obj.id)
         l.append(q)
     else : 
         disp = " You have not posted any questions, yet ! "
-    return render (request, 'recent_activity.html', { 'q':l, 'obj': obj,'disp':disp})  
+    
+    return render (request, 'recent_activity.html', { 'q':l, 'obj': obj,'disp':disp,'deleted':deleted})  
     
     
+
 def delete_ques(request, ques_id):
     
     d = Question.objects.filter(user_id = request.user).get(pk=ques_id).delete()
     
-    return HttpResponseRedirect("/forum/recent/")
+    
+    return HttpResponseRedirect("/forum/recent/?deleted=ok")
     
 
     
