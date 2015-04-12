@@ -60,7 +60,7 @@ class UpdateProfile(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
 
-    def clean_email(self):
+    """def clean_email(self):
         username = self.cleaned_data.get('username')
         email = self.cleaned_data.get('email')
 
@@ -75,11 +75,19 @@ class UpdateProfile(forms.ModelForm):
         if commit:
             user.save()
 
-        return user
+        return user"""
         
 class UpdateImage(forms.ModelForm):
     website = forms.URLField(initial = "https://www.google.com")
-    
+    #picture = forms.ImageField(ModelMultipleChoiceField(queryset=Author.objects.all()))
     class Meta:
         model = UserProfile
         fields = ('website', 'picture')
+
+
+#class AnswerForm(forms.ModelForm):
+ #   answer_text = forms.CharField(widget=forms.Textarea(attrs={'class':'ans_text', 'placeholder': 'Your Answer.....'}), max_length=1000, label='') 
+  #  class Meta:
+   #     model = Answer
+    #    fields = ('answer_text' ,)
+    
