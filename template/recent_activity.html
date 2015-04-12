@@ -3,8 +3,12 @@
 -
 <head>
 <title>nonzero1.0</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
+    
 <style>
 /*
 
@@ -339,6 +343,12 @@ margin-bottom: 2.0em;
 
 </head>
 <body>
+{% ifequal deleted "ok" %}
+
+<script>
+swal( { title :'<p style="color:black"> Your Question has been deleted successfully !</p>', html : true, timer : 800  });
+</script>
+{% endifequal %}
 <div id="header">
   <div id="header_inner" class="fixed">
     <div id="logo">
@@ -368,7 +378,7 @@ margin-bottom: 2.0em;
   <div id="main_inner" class="fixed">
     <div id="primaryContent_3columns">
       <div id="columnA_3columns">
-  
+        
         <br><br> 
         <h3> Your Questions </h3>
         {% for j in q %}
