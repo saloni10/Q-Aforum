@@ -8,6 +8,10 @@
 
   <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/reset.css"> <!-- CSS reset -->
   <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/style1.css"> 
+    <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
+   
   
 
 <style>
@@ -347,16 +351,18 @@ margin-bottom: 2.0em;
 <script src ="/home/saloni/forum/QAforum/static/js/modernizr.js"> </script>
 </head>
 <body>
-
+ {% ifequal posted "ok" %}
+    <script> swal( { title :'<p style="color:black"> Your Question has been posted successfully !</p>', imageUrl: '/home/saloni/forum/QAforum/static/images/thumbs-up.jpg', html : true, timer: 600, });</script>
+  {% endifequal %}
   <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
     <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
       
 
       <div id="cd-login"> <!-- log in form -->
-        <form class="cd-form" method="get" action="/forum/question">
+        <form class="cd-form" required method="get" action="/forum/question">
           <p class="fieldset">
             
-            <input class="full-width has-padding has-border" id="signin-email" type="text" name="postt" placeholder="Your Question">
+            <input class="full-width has-padding has-border" id="signin-email" type="text" required name="postt" placeholder="Your Question">
             <span class="cd-error-message">Error message here!</span>
           </p>
 
@@ -400,7 +406,7 @@ margin-bottom: 2.0em;
                 <p> <input type="text" placeholder="search here" name= "key" ></p>
                 <p> <input name="search" type="submit" value= "Search"></p>
                 </form></li>
-        <li><a href="/forum/About">About Us</a></li>
+        <li><a href="/forum/about">About Us</a></li>
         <div class="main-nav">
         <li><a class="cd-signin" href="#0">Post Your Question</a></li>
          </div>
@@ -416,18 +422,23 @@ margin-bottom: 2.0em;
   <div id="main_inner" class="fixed">
     <div id="primaryContent_3columns">
       <div id="columnA_3columns">
-        <h3>Welcome to this amazing Forum!!</h3>
+        <h3>Welcome to this amazing Forum!! </h3>
         <br><br>
       
-        {% for i,j,l,k in final %}
+     
+        {% for i,j,l,k,u in final %}
 
             {% if j.picture %}
                 <p><img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/> 
             {% endif %}  
             Posted by {{i.user_id.username}} on {{i.date_created}}<br/>
-            <a href="/forum/ansform/{{i.id}}">{{i}}</a></br>
+            <a href="/forum/ansform/{{i.id}}">{{i}}</a></br></br>
             {% if l.answer_text %}
-             Answered by:{{l.user_id.username}}{{l|safe|truncatechars:"40"|linebreaks }}
+            {% if u.picture %}
+            
+            &nbsp;  &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;<img src= "/forum{{u.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/>
+            {% endif %} 
+                    Answered by:{{l.user_id.username}}  &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;{{l|safe|truncatechars:"40"|linebreaks }}
              {% elif not l.answer_text %}
              <p> Be the First one to answer </p>
              {% endif %}
@@ -440,6 +451,7 @@ margin-bottom: 2.0em;
            
            <!-- Next/Prev page links  -->
         {% if final.object_list and final.paginator.num_pages > 1 %}
+        
         <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
             <span class="step-links">
                <center> {% if final.has_previous %}
