@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 	
 	url(r'^question/', views.question),
 	url(r'^home/', views.home,name='home' ),
-	url(r'^about/', views.about,name='about' ),
+	url(r'^About/', views.about,name='about' ),
 	#url(r'^main/', views.main,name='main' ),
 	#url(r'^qaform/', views.display,name='post' ),
 	url(r'^register/', views.register,name='registration' ),
