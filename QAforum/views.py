@@ -18,7 +18,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from helper import get_query
-# Create your views here.
+
 
 #def register(request):
  #   return render(request,'reg.html')
@@ -93,8 +93,9 @@ def register(request):
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
-    logged_in = False
+    logged_in = 't'
     # If the request is a HTTP POST, try to pull out the relevant information.
+    
     if request.method == 'POST' and not request.user.is_authenticated():
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
@@ -121,9 +122,11 @@ def user_login(request):
                 return HttpResponse("Your account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
-            print login_form.errors
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Invalid login details supplied.")
+            
+            #print "Invalid login details: {0}, {1}".format(username, password)
+            logged_in = 'f'
+            login_form = LoginForm()
+            return render(request,'login.html',{'logged_in':logged_in,'login_form':login_form})
 
     elif request.method == 'POST' and request.user.is_authenticated():
         return HttpResponseRedirect("/forum/home/")
@@ -230,11 +233,12 @@ def search_new(request):
     if 'key' in request.GET:
         query_string = request.GET['key'].strip()
         entry_query = get_query(query_string, ['title'])
-        found_entries = Question.objects.filter(entry_query).order_by('date_update')
+        found_entries = Question.objects.filter(entry_query).order_by('-date_update')
         for i in found_entries :
                 extra.append(UserProfile.objects.filter(user = i.user_id_id)) 
+        final = zip(extra, found_entries)       
     return render_to_response('search.html',
-            { 'query_string': query_string, 'found_entries': found_entries, 'extra':extra },
+            { 'query_string': query_string, 'found_entries': found_entries, 'extra':extra, 'final': final },
             context_instance=RequestContext(request)
         ) 
         
@@ -287,7 +291,7 @@ def home(request):
             except (InvalidPage, EmptyPage):
                final = paginator.page(paginator.num_pages)
                
-    return render(request,'home.html',{'posted':posted, 'final':final, 'first':first,'as':read,'ansextra':ansextra,'abc':answerlist})
+    return render(request,'home1.html',{'posted':posted, 'final':final, 'first':first,'as':read,'ansextra':ansextra,'abc':answerlist})
 
 
 @login_required
@@ -312,19 +316,27 @@ def question(request):
 def writeans(request,ques_id):
     ques=[]
     extra=[]
+    d_a=[]
+    a = []
     quest=Question.objects.get(id=ques_id)
     ques.append(UserProfile.objects.get(user = quest.user_id))
     
     anss = Answer.objects.filter(question_id_id=ques_id)
     for i in anss :
             extra.append(UserProfile.objects.get(user = i.user_id))
-    return render(request,'ans.html',{'q':quest,'a':anss,'ques': ques,'extra':extra})
+            if i.user_id_id== request.user.id:
+                d_a.append(True)
+            else:
+            	d_a.append(False)
+    final = zip(extra,anss,d_a)         	 
+    return render(request,'ans.html',{'q':quest,'a':anss,'ques': ques,'extra':extra,'m':final})
     
 
 def answer(request,ques_id):
     ques = []
     extra=[]
     answered = False
+    d_a=[]
     if request.method == "GET" and 'ans' in request.GET:
         answered = True
         answer = request.GET['answer']
@@ -340,7 +352,12 @@ def answer(request,ques_id):
         anss = Answer.objects.filter(question_id_id=ques_id)
         for i in anss :
             extra.append(UserProfile.objects.get(user = i.user_id))
-        return render(request,'ans.html',{'q':quest, 'a':anss,'extra':extra,'ques': ques,'answered':answered})
+            if i.user_id_id== request.user.id:
+                d_a.append(True)
+            else:
+            	d_a.append(False)
+        final = zip(extra,anss,d_a)
+        return render(request,'ans.html',{'q':quest, 'a':anss,'extra':extra,'ques': ques,'answered':answered,'m':final})
         
 
 def recent_activity(request):
@@ -351,7 +368,7 @@ def recent_activity(request):
     if 'deleted' in request.GET:
         deleted = request.GET['deleted']
     if Question.objects.filter(user_id= obj.id).exists():
-        q = Question.objects.filter(user_id= obj.id)
+        q = Question.objects.filter(user_id= obj.id).order_by('-date_update')
         l.append(q)
     else : 
         disp = " You have not posted any questions, yet ! "
