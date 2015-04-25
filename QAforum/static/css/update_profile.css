@@ -1,0 +1,168 @@
+
+#wrapper{
+	width: 60%;
+	right: 0px;
+	min-height: 560px;	
+	margin: 0px auto;	
+	width: 500px;
+	position: absolute;;	
+}
+#wrapper{
+	width: 60%;
+	right: -40px;
+	min-height: 560px;	
+	margin: 0px auto;	
+	width: 500px;
+	position: relative;	
+}
+/**** Styling the form elements **/
+
+/**** general text styling ****/
+#wrapper a{
+	color: rgb(95, 155, 198);
+	text-decoration: underline;
+}
+#login{
+	position: absolute;
+        
+	top: 25px;
+	width:80%;	
+	padding: 3px 2% 20px 6%;
+	margin: 0 0 35px 0;
+	background:#FFFFFD;
+	border: 1px solid   #3e879f;
+	-webkit-box-shadow: 0pt 2px 5px rgba(46, 152, 161, 0.93),	0px 0px 8px 8px rgba(210, 184, 179, 0.76) inset;
+	   -moz-box-shadow: 0pt 2px 5px rgba(46, 152, 161, 0.93),	0px 0px 8px 8px rgba(210, 184, 179, 0.76) inset;
+	        box-shadow: 0pt 2px 5px rgba(46, 152, 161, 0.93),	0px 0px 8px 5px rgba(210, 184, 179, 0.76) inset;	
+	-webkit-box-shadow: 5px;
+	-moz-border-radius: 5px;
+		 border-radius: 5px;
+}
+.heading
+{ text-align:center;
+  font-size : 40px;
+}
+#wrapper p{
+	margin-bottom:15px;
+}
+#wrapper p:first-child{
+	margin: 0px;
+}
+#wrapper label{
+	color:  rgb(64, 92, 96);
+	position: center;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  { 
+	color: rgb(190, 188, 188); 
+	font-style: italic;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+	color: rgb(190, 188, 188);
+	font-style: italic;
+} 
+input {
+  outline: none;
+}
+#wrapper p.button input{
+	width: 30%;
+	cursor: pointer;	
+	background:#3e879f ;
+	padding: 8px 5px;
+	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+	color: #fff;
+	font-size: 24px;	
+	border: 1px solid black;	
+	margin-bottom: 8px;	
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;	
+	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+	   -moz-box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+	        box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+#wrapper p.button input:hover{
+	background: #1ea1cc url('/home/divya/Q-Aforum/QAforum/static/images/menu_a.jpg');
+}
+#wrapper p.button input:active,
+#wrapper p.button input:focus{
+	background: rgb(40, 137, 154);
+	position: relative;
+	top: 1px;
+	border: 1px solid rgb(12, 76, 87);	
+	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	   -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+p.login.button,
+p.signin.button{
+	text-align: right;
+	margin: 3px 0;
+}
+
+.animate{
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-fill-mode: both;
+	
+	-moz-animation-duration: 0.5s;
+	-moz-animation-timing-function: ease;
+	-moz-animation-fill-mode: both;
+	
+	-o-animation-duration: 0.5s;
+	-o-animation-timing-function: ease;
+	-o-animation-fill-mode: both;
+	
+	-ms-animation-duration: 0.5s;
+	-ms-animation-timing-function: ease;
+	-ms-animation-fill-mode: both;
+	
+	animation-duration: 0.5s;
+	animation-timing-function: ease;
+	animation-fill-mode: both;
+}
+.section-title {
+    padding: 0px 0px 18px;
+    margin: 0px 0px 10px;
+    text-transform: uppercase;
+}
+
+
+
+
+.text{
+font-size:15px;
+}
+/* footer */
+.footer { background-color:#194e5c;
+width: 1000px;
+margin: 0px;
+text-align: center;
+border-top: dotted 1px #E1E1E1;
+margin-top: 1.0em;
+margin-bottom: 1.0em;
+padding-top: 1.0em;
+padding:30px 9% 30px 13.5%;}
+
+img{
+position:absolute;
+left:270px;
+top:500px;}
+
+
+
+

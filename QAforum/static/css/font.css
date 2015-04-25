@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'ARIR';
+	src: url('/home/divya/Q-Aforum/QAforum/static/css/ARIR.eot');
+	src: local('ARIR'), url('/home/divya/Q-Aforum/QAforum/static/css/ARIR.woff') format('woff'), url('/home/divya/Q-Aforum/QAforum/static/css/ARIR.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_15812">Text with this font applied</p> */
+.fontsforweb_fontid_15812 {
+	font-family: 'ARIR' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

@@ -1,0 +1,47 @@
+/* 
+    AUTHOR: Chris Coyier
+            chriscoyier@gmail.com
+            http://chriscoyier.net
+*/
+
+
+
+ body {background:#485b6e;}
+
+
+#background {
+	background: url(/home/saloni/forum/QAforum/static/image/background.png) repeat 5% 5%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 100;
+}
+
+#midground {
+	background: url(/home/saloni/forum/QAforum/static/images/midground.png) repeat 20% 20%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 100;
+}
+
+#foreground {
+	background: url(/home/saloni/forum/QAforum/static/images/foreground.png) repeat 90% 110%;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 200;
+}
+
+
+.page-wrap {
+	
+	position: relative;
+	z-index: 300;
+	background: ;
+	overflow: hidden;
+	padding: 30px 50px;
+	
+	
+}
+
+
+
+

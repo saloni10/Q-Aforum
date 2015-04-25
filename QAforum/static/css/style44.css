@@ -1,0 +1,197 @@
+/*-----------------
+
+Author:     Manish Bajpai
+Website:    http://designase.com
+Email:		admin@designase.com
+
+-------------*/
+
+body{
+
+    
+    animation-duration: 50s;
+ -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+ 	background-size: cover;
+font-family: "Segoe UI", sans-serif;
+ }
+
+.box{
+margin:auto;
+margin-top:0%;
+top:0px;
+left:0px;
+background:#E0E0E0;
+max-width:100%;
+width:22em;
+height:auto;
+padding:4%;
+-webkit-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+opacity:0.8;
+}
+
+@keyframes example {
+    0%   {background-color: aqua;}
+    25%  {background-color: yellow;}
+    50%  {background-color: pink;}
+    100% {background-color: green;}
+}
+
+h1 {
+font-family: 'ARIR';
+font-size:50px;
+margin:30px;
+color:;
+}
+.title{
+text-align:center;
+font-size:40px;
+margin-top:-4%;
+color:#FD868E;
+ }
+
+.ico{
+background:#fff;
+width:9%;
+padding-top:9px;
+padding-left:9px; 
+padding-right:9px;
+padding-bottom:11px;
+border:1px solid #FD868E;
+border-right:none;
+border-radius:4px  0px 0px 4px; 
+font:20px;
+margin-bottom:3%;
+color: #FD868E;
+transition:all 0.9s ease 0s;
+ }
+.ico:hover{
+color:#fff;
+border:1px solid #FD868E;
+background:#FD868E;
+ } 
+ 
+  input[type=image]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+input[type=text]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+input[type=password]{
+width:82%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+border-radius: 0px 4px 4px 0px;
+margin-bottom:3%;
+transition:all 0.9s ease 0s;
+}
+
+input:hover{
+background:#FD868E;
+color:#fff;
+border:1px solid #FD868E;
+ }
+
+input[type=checkbox].css-checkbox {
+							position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+						}
+
+						input[type=checkbox].css-checkbox + label.css-label {
+							padding-left:22px;
+							height:17px; 
+                            margin-bottom:3%;
+							display:inline-block;
+							line-height:17px;
+							background-repeat:no-repeat;
+							background-position: 0 0;
+							font-size:18px;
+                            color:#A7A7A7;
+							vertical-align:middle;
+							cursor:pointer;
+
+						}
+
+						input[type=checkbox].css-checkbox:checked + label.css-label {
+							background-position: 0 -17px;
+						}
+						label.css-label {
+				background-image:url(../img/check.png);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+     
+ 
+textarea{
+width:92%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+height:60px;
+border:1px solid #FD868E;
+border-radius:4px;
+margin-bottom:3%;
+transition:all 0.9s ease 0s;
+}
+textarea:hover{
+background:#FD868E;
+color:#fff;
+
+ }
+.btn{
+background:#FD868E;
+width:99%;
+padding:7px;
+border:none;
+box-shadow:0px 5px 0px #FC4E5A;
+color:#fff;
+font-size:30px;
+text-shadow:1px 2px 1px #C0C0C0;
+cursor:pointer; 
+transition:all 0.9s ease 0s;
+ }
+.btn:hover{
+box-shadow:0px 0px 0px #708E31;
+border-radius:30px;
+ } 
+ 
+.bottom{
+text-align:center;
+color:#727876;
+
+ } 
+.links{
+text-align:center;
+color:#FD868E;
+font-weight:bold;
+text-decoration:none;
+transition:all 0.9s ease 0s;
+ } 
+.links:hover{
+color:#7E8583;
+ }  

@@ -1,0 +1,131 @@
+/*-----------------
+
+Author:     Manish Bajpai
+Website:    http://designase.com
+Email:		admin@designase.com
+
+-------------*/
+
+
+.box{
+margin:auto;
+margin-top:5%;
+top:0px;
+left:0px;
+background:#E0E0E0;
+max-width:100%;
+width:22em;
+height:auto;
+padding:4%;
+-webkit-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.75);
+opacity:0.8;
+}
+.title{
+text-align:center;
+font-size:40px;
+margin-top:-4%;
+color:#FD868E;
+ }
+ 
+@keyframes example {
+    0%   {background-color: aqua;}
+    25%  {background-color: yellow;}
+    50%  {background-color: pink;}
+    100% {background-color: green;}
+    }
+    
+input[type=text]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+ input[type=email]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+ input[type=url]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+  input[type=image]{
+width:83%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+margin-bottom:3%;
+border-radius: 0px 4px 4px 0px;
+transition:all 0.9s ease 0s;
+ } 
+input[type=password]{
+width:82%;
+color:#FD868E;
+padding:12px;
+font-size:16px;
+border:1px solid #FD868E;
+border-left:none;
+border-radius: 0px 4px 4px 0px;
+margin-bottom:3%;
+transition:all 0.9s ease 0s;
+}
+
+input:hover{
+background:#FD868E;
+color:#fff;
+border:1px solid #FD868E;
+ }
+
+input[type=checkbox].css-checkbox {
+							position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+						}
+
+						input[type=checkbox].css-checkbox + label.css-label {
+							padding-left:22px;
+							height:17px; 
+                            margin-bottom:3%;
+							display:inline-block;
+							line-height:17px;
+							background-repeat:no-repeat;
+							background-position: 0 0;
+							font-size:18px;
+                            color:#A7A7A7;
+							vertical-align:middle;
+							cursor:pointer;
+
+						}
+
+						input[type=checkbox].css-checkbox:checked + label.css-label {
+							background-position: 0 -17px;
+						}
+						label.css-label {
+				background-image:url(../img/check.png);
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}

@@ -1,0 +1,338 @@
+ @charset "utf-8";
+body {
+	margin:0;
+        
+	padding:0;
+	width:100%;
+	color:#5f5f5f;
+	font:normal 12px/1.8em Arial, Helvetica, sans-serif;
+        background:white;
+}
+html, .main {
+	padding:0;
+	margin:0;font:normal 12px/1.8em Arial, Helvetica, sans-serif;
+        
+	
+}
+@keyframes example {
+    0%   {background: #9FDFDB;}
+    25%  {background: #E5AFC1;}
+    50%  {background: #90DAC9;}
+    100% {background: pink;}
+}
+   
+.clr {
+	clear:both;
+	padding:0;
+	margin:0;
+	width:100%;
+	font-size:0;
+	line-height:0;
+}
+.logo {
+	padding:80px 0 0 26px;
+	float:left;
+	width:auto;
+}
+h1 {
+	margin:0;
+	padding:0px 10px;
+	color:black;
+	font:normal 32px/1.2em Arial, Helvetica, sans-serif;
+	letter-spacing:-3px;
+	
+}
+h1 a, h1 a:hover {
+	color:black;
+	text-decoration:none;
+}
+h1 span {
+	color:#003366;
+}
+h1 small {
+	display:block;
+	padding:0;
+	font:normal 12px/1.2em Arial, Helvetica, sans-serif;
+	letter-spacing:normal;
+}
+h2 {
+	font:normal 24px Arial, Helvetica, sans-serif;
+	padding:8px 0;
+	margin:8px 0;
+	color:#003366;
+}
+p {
+	margin:8px 0;
+	padding:0 0 8px 0;
+	font:normal 12px/1.8em Arial, Helvetica, sans-serif;
+}
+a {
+	color:#D788B3;
+        text-decoration:none;
+        
+	
+}
+.header, .content, .menu_nav, .fbg, .footer, form, ol, ol li, ul, .content .mainbar, .content .sidebar {
+	margin:0;
+	padding:0;
+}
+
+.header {
+	background: url(/home/saloni/forum/QAforum/static/images/blue1.png) ;
+	height:135px;#5CE6E6
+        float:left;
+}
+.header_resize {
+	margin:25px auto;
+	padding:0;
+	width:970px;
+}
+.menu_nav {
+	margin:0px ;
+	padding:95px 0 0;
+        
+	
+}
+.menu_nav ul {
+	list-style:none;
+}
+.menu_nav ul li {
+	margin:100;
+	padding:0 16px 0 0;
+	float:right;
+	
+}
+.menu_nav ul li a {
+	display:block;
+	margin:0;
+	padding:10px 15px 8px;
+	color:#fff;
+	text-decoration:none;
+	font-size:13px;
+	background-color:#003366;
+}
+.menu_nav ul li.active a, .menu_nav ul li a:hover {
+	background: #FF4D94;
+}
+.searchform {
+	margin:50px 0 8px 0;
+	padding:10px 30px 40px 0px;
+}
+#formsearch {
+	margin:0;
+	padding:0;
+}
+#formsearch span {
+	display:inline;
+	margin:6px 0;
+	padding:0 8px 0 11px !important;
+	padding:0 4px 0 6px;
+	float:right;
+	width:183px;
+	background:#fff url(/home/saloni/forum/QAforum/static/images/search.gif) no-repeat top left;
+}
+#formsearch input.key {
+	margin:30;
+	padding:5px 0;
+	float:left;
+	width:180px;
+	height:20px;
+	border:none;
+	background:none;
+	font:normal 13px/20px Arial, Helvetica, sans-serif;
+	color:#a8acb2;
+}
+
+#formsearch input.button_search {
+	margin:6px 0 0 0;
+	padding:0;
+	border:none;
+	float:right;
+}
+.content {
+	
+}
+.content_resize {
+	margin:0 auto;
+	padding:28px 0 0;
+	width:970px;
+	
+}
+.content .mainbar {
+	margin:0;
+	padding:0;
+	float:left;
+	width:662px;
+}
+.ta{background-color:pink;}
+.content .mainbar img {
+	padding:4px;
+	border:1px solid #d2d5d4;
+}
+.content .mainbar img.fl {
+	margin:4px 16px 4px 0;
+	float:left;
+}
+.content .mainbar .article {
+	margin:50px 0 8px 0;
+	padding:10px 24px 16px 40px;
+  height:170px
+}
+
+.content .sidebar {
+	padding:0;
+	float:right;
+	width:300px;
+}
+.content .sidebar .gadget {
+	margin:0 0 8px 0;
+	padding:16px 16px 16px 40px;
+  height:413px;
+}
+ul.sb_menu, ul.ex_menu {
+	margin:0;
+	padding:0;
+	list-style:none;
+	color:#959595;
+}
+ul.sb_menu li, ul.ex_menu li {
+	margin:0;
+}
+ul.sb_menu li {
+	padding:4px 0 4px 12px;
+	width:220px;
+}
+ul.ex_menu li {
+	padding:4px 0 8px 12px;
+}
+ul.sb_menu li a, ul.ex_menu li a {
+	color:#5f5f5f;
+	text-decoration:none;
+	margin-left:-12px;
+	padding-left:12px;
+	
+}
+ul.sb_menu li a:hover, ul.ex_menu li a:hover {
+	color:#de484d;
+	font-weight:bold;
+}
+ul.sb_menu li a:hover {
+	
+}
+ul.ex_menu li a:hover {
+	text-decoration:none;
+}
+.content .mainbar .article, .content .sidebar .gadget, .fbg_resize, .searchform {
+	border:2px solid #e3e3e3;
+	background-color:#EDF6FF;
+	border-radius:12px;
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;
+}
+.searchform{border:2px solid #e3e3e3;
+	background-color:white;
+	
+	-moz-border-radius:12px;
+	-webkit-border-radius:12px;}
+
+.content .mainbar .comment {
+	margin:0;
+	padding:16px 0 0 0;
+}
+.content .mainbar .comment img.userpic {
+	border:1px solid #dedede;
+	margin:10px 16px 0 0;
+	padding:0;
+	float:left;
+}
+.fbg_resize {
+	margin:0 auto;
+	padding:24px 40px;
+	width:886px;
+}
+.fbg img {
+	padding:4px;
+	border:1px solid #d2d5d4;
+}
+.fbg .col {
+	margin:0;
+	float:left;
+}
+.fbg .c1 {
+	padding:0 16px 0 0;
+	width:262px;
+}
+.fbg .c2 {
+	padding:0 16px;
+	width:280px;
+}
+.fbg .c3 {
+	padding:0 0 0 16px;
+	width:280px;
+}
+.fbg .c1 img {
+	margin:8px;
+}
+.fbg .c3 img {
+	margin:8px 16px 4px 0;
+	float:left;
+}
+.footer_resize {
+	margin:0 auto;
+	padding:24px 40px;
+	width:890px;
+}
+.footer p {
+	margin:0;
+	padding:4px 0;
+}
+.footer a {
+	color:#5f5f5f;
+	text-decoration:underline;
+}
+.footer a:hover {
+	text-decoration:none;
+}
+.footer .lf {
+	float:left;
+}
+.footer .rf {
+	float:right;
+}
+ul.fmenu li a:hover, ul.fmenu li.active a {
+	background:blue;
+	color:#fff;
+}
+ul.fmenu li a:hover {
+	text-decoration:underline;
+}
+ol {
+	list-style:none;
+}
+ol li {
+	display:block;
+	clear:both;
+}
+ol li label {
+	display:block;
+	margin:0;
+	padding:16px 0 0 0;
+}
+ol li input.text {
+	width:480px;
+	border:1px solid #c0c0c0;
+	margin:2px 0;
+	padding:5px 2px;
+	height:16px;
+	background:#fff;
+}
+ol li textarea {
+	width:480px;
+	border:1px solid #c0c0c0;
+	margin:2px 0;
+	padding:2px;
+	background:#fff;
+}
+ol li .send {
+	margin:16px 0 0 0;
+}

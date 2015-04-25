@@ -1,0 +1,102 @@
+/*
+Design by http://www.bluewebtemplates.com
+Released for free under a Creative Commons Attribution 3.0 License
+*/
+
+@charset "utf-8";
+body { margin:0; padding:0; width:100%; font:normal 12px/1.8em Arial, Helvetica, sans-serif;}
+html, .main { padding:0; margin:0; background:#fff;}
+.clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+h1 { margin:0; padding:12px 0; color:#1ea1cc; font:normal 40px/1.2em Arial, Helvetica, sans-serif;}
+h1 a, h1 a:hover { color:#1ea1cc; text-decoration:none;}
+h2 { font:bold 24px Arial, Helvetica, sans-serif; color:#fff;padding:0px 0px;margin:0px 0px;}
+p { margin:8px 0; padding:0 0 8px 0; font:normal 12px/1.8em Arial, Helvetica, sans-serif;}
+a { color:#fff; text-decoration:underline; padding:2px 4px;}
+a:hover { background-color:#1ea1cc;}
+a.nobg:hover { background:none; text-decoration:none;}
+
+.header, .hbg, .content, .menu_nav, .fbg, form, ol, ol li, ul, .content .mainbar, .content .sidebar { margin:0; padding:0;}
+.header_resize, .content_resize, .fbg_resize, .footer_resize { margin:0 auto; padding:0 40px; width:890px;}
+.fbg, .footer { padding:16px 0;}
+.main-nav{
+display: block;
+position:relative;
+float:left;
+}
+
+/* header */
+.header { background:url(/home/divya/Q-Aforum/QAforum/static/images/header_bg.jpg) repeat-x top;}
+.header_resize { height:295px;}
+.header .logo { float:left; padding-top:12px;}
+
+/* menu */
+.menu_nav { height:52px; float:right; width:auto; padding-top:37px;}
+.menu_nav ul { width:auto; list-style:none;}
+.menu_nav ul li { margin:0 1px; float:left;}
+.menu_nav ul li a { display:block; margin:0; padding:22px 28px; color:#fff; text-decoration:none; font-weight:bold;}
+.menu_nav ul li a:hover, .menu_nav ul li.active a { background:url(/home/divya/Q-Aforum/QAforum/static/images/menu_a.jpg) no-repeat center center; color:#1ea1cc;}
+.text{
+font-size:15px;
+}
+/* footer */
+.footer { background-color:#194e5c;
+width: 1000px;
+margin: 0px;
+text-align: center;
+border-top: dotted 1px #E1E1E1;
+margin-top: 1.0em;
+margin-bottom: 1.0em;
+padding-top: 1.0em;
+padding:30px 9% 30px 13.5%;}
+
+/* form */
+#cd-login{
+float:right;
+right:0px;
+padding:30px 2px;
+}
+#cd-close-form{
+float:right;
+}
+
+.box{
+    
+    position: absolute;
+	top: 0px;
+   width: 60%;
+   height:130%;	
+	padding: 18px 6% 160px 5%;
+	margin: 0 2px 50px 0;
+	border: 1px solid;
+	-webkit-box-shadow: 0pt 2px 5px rgba(113, 38, 22, 0.7),	0px 0px 8px 8px rgba(210, 184, 179, 0.76) inset;
+	   -moz-box-shadow: 0pt 2px 5px rgba(113, 38, 22, 0.7),	0px 0px 8px 8px rgba(210, 184, 179, 0.76) inset;
+	        box-shadow: 0pt 2px 5px rgba(113, 38, 22, 0.7),	0px 0px 8px 5px rgba(210, 184, 179, 0.76) inset;	
+	-webkit-box-shadow: 5px;
+	-moz-border-radius: 5px;
+		 border-radius: 5px;
+     background-color:#3e879f;
+        
+}
+
+#main_inner
+{
+position: relative;
+width: 1000px;
+margin: 0 auto;
+padding-top: 3.5em;
+}
+
+#main_inner h3,h4
+{
+position: relative;
+}
+
+#main_inner h3
+{
+font-size: 2.1em;
+padding-bottom: 0.1em;
+margin-bottom: 0.8em;
+}
+
+
+
