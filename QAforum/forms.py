@@ -4,11 +4,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError 
 from views import *
+from django.core.validators import RegexValidator
+
 
 class UserForm(forms.ModelForm):
 
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_fname', 'placeholder': 'First Name'}), max_length=50, label='')    
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_lname', 'placeholder': 'Last Name'}), max_length=50, label='')
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_fname', 'placeholder': 'First Name'}), max_length=50, label='',validators=[
+        RegexValidator(
+            regex='^[a-zA-Z]*$',
+            message='First Name can not be Numeric',
+            code='invalid_firstname'
+        ),
+    ])    
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_lname', 'placeholder': 'Last Name'}), max_length=50, label='',validators=[
+        RegexValidator(
+            regex='^[a-zA-Z]*$',
+            message='Last Name can not be Numeric',
+            code='invalid_lastname'
+        ),
+     ])
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'reg_uname', 'placeholder': 'User Name'}), max_length=50, label='')
     email = forms.EmailField(widget=forms.TextInput(attrs={'class':'reg_mail', 'placeholder': 'Email'}), max_length=50, label='')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'reg_pwd', 'placeholder': 'Your password...'}), max_length=20, label='')
