@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 class Question(models.Model):
    
     user_id = models.ForeignKey(User)
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=200)
     date_created = models.DateField(max_length=30)
     date_update = models.DateField(max_length=50)
     is_anonymous = models.BooleanField(default=False)
