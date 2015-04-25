@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Solution Bag</title>
+      <link rel="stylesheet" href="{{STATIC_URL}}css/style2.css">
+      
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
+        <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
+      <script src="{{STATIC_URL}}js/a.js"></script>
+      <script src="/home/divya/Q-Aforum/QAforum/static/js/a.js"></script>
+      <script src="styleswitch.js" type="text/javascript"></script>
+      <script src="{{STATIC_URL}}js/main.js" type="text/javascript"></script>
+      <script src="{{STATIC_URL}}js/modernizr.js" type="text/javascript"></script>
+       
+      <link rel="stylesheet" href="{{STATIC_URL}}css/style1.css">
+        <style>
+        .sidebar { margin-right : 10%; margin-top : 2%;}
+
+        </style>
+   </head>
+
+   <body >
+    {% ifequal posted "ok" %}
+    <script> swal( { title :'<p style="color:black"> Your Question has been posted successfully !</p>', imageUrl: '/home/saloni/forum/QAforum/static/images/thumbs-up.jpg', html : true, timer: 1000, });</script>
+  {% endifequal %}
+           <div class="wrapper">
+       <div class="ribbon-wrapper-green"><div class="ribbon-green"></div></div>
+</div>
+         <div class="header">
+            <div class="header_resize">
+               <div class="logo">
+                  <h1><a href="index.html"><i><span>Solution</span> Bag <small></i>Every Question has a Jhakkas <span>Solution!!</span></small></a></h1>
+               </div>
+               <div class="menu_nav">
+                  <ul>
+                      <li><a href="/forum/logout">Logout</a></li>
+                     
+                        <li><a href="/forum/profile/">Profile</a></li>
+                       
+                      
+                     
+                     <li><a href="/forum/recent/">Recent Activity</a></li>
+                      <div class="main-nav">
+                      <li><a class="cd-signin" href="#0">Post Your Question</a></li>
+                      </div>
+         
+                    
+                    <li><a href="/forum/About">About Us</a></li>
+                   <li><a href="/forum/home" class="active">Home</a></li>
+                   
+                  </ul>
+               </div>
+               <div class="clr"></div>
+            </div>
+         </div>
+
+
+
+
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      
+
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form" method="get" action="/forum/question">
+          <p class="fieldset">
+            
+            <input class="full-width has-padding has-border" id="signin-email" type="text" name="postt" required placeholder="Your Question">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          
+
+          <p class="fieldset">
+            <input class="full-width"  type="submit" value="Go">
+          </p>
+        </form>
+        
+        
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      
+
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+       <!-- cd-signup -->
+
+      
+
+        
+
+        
+      <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div>
+  <div class="sidebar">
+                  
+                     <form id="formsearch"   method ="get" action= "/forum/search/">
+                        <input name="button_search" src="/home/saloni/forum/QAforum/static/images/search_btn.gif" class="button_search" type="image" />
+                        <span>
+                        <input name="key" class="key" id="key" maxlength="80" placeholder="Search" type="text" name= "key" />
+                        </span>
+                     </form>
+                  
+                 
+                  </div>
+                  
+
+
+         <div class="content">
+            <div class="content_resize">
+               <div class="mainbar">  {% for i,j,l,k,u in final %}
+                  <div class="article">
+                     <div class= "side" style="float:left">
+                     {% if j.picture %}
+                     <p><img src= "/forum{{j.picture.url|default_if_none:'/media/default_user.jpg'}}" width=30 height=30/> 
+                     {% endif %}</div> <b><h2> &nbsp; <a style = "color:#003366" href="/forum/ansform/{{i.id}}">{{i}}</a></h2></b>
+                     <subscript> &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp;Posted by {{i.user_id.username}} on {{i.date_created}}</subscript>
+                     <div class="clr"></div>
+                      
+                     <p>
+                        &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp;<a href="/forum/ansform/{{i.id}}"<b><i> {{l|truncatechars:90 }}</b></i></a><a href="/forum/ansform/{{i.id}}">
+                       {% ifequal k 1 %}
+                       ....&nbsp &nbsp &nbspRead more<br></a>
+                        
+                             <subscript> &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp;Answered By: {{l.user_id.username}}</subscript>
+                         {% endifequal %}
+                        
+                     </p>
+                      {% ifequal k 1 %}
+                     <p class="spec"> &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp; &nbsp;   &nbsp;   &nbsp;<a href="/forum/ansform/{{i.id}}" class="rm">View More Answers</a></p> {% endifequal %}
+                  </div>
+         {% endfor %}   
+
+  
+
+
+
+               </div>
+               
+               </div>
+               <div class="clr"></div>
+            </div>
+         </div>
+         
+         </div>
+         
+
+  
+           <!-- Next/Prev page links  -->
+        {% if final.object_list and final.paginator.num_pages > 1 %}
+        
+        <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
+            <span class="step-links">
+               <center> {% if final.has_previous %}
+                    <a href= "?page={{ final.previous_page_number }}">Previous &lt;&lt; </a>
+                {% endif %}
+
+                <span class="current">
+                    &nbsp;Page {{ final.number }} of {{ final.paginator.num_pages }}
+                </span>
+
+                {% if final.has_next %}
+                    <a href="?page={{ final.next_page_number }}"> &gt;&gt; Next</a>
+                {% endif %}
+            </center>
+            </span>
+        </div>
+        {% endif %} 
+
+
+   </body>
+</html>

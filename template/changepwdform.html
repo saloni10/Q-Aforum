@@ -1,26 +1,131 @@
-<html>
 
-<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Solution Bag</title>
+          
+      <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/style2.css">
+      <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/style1.css">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <script src="/home/saloni/Qforum/QAforum/static/js/a.js"></script>
+      <script src="styleswitch.js" type="text/javascript"></script>
+      <script src="/home/saloni/forum/QAforum/static/js/main.js" type="text/javascript"></script>
+      <script src="/home/saloni/forum/QAforum/static/js/modernizr.js" type="text/javascript"></script>
         <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.min.js"></script>
         <script src="/home/saloni/forum/QAforum/static/js/sweet-alert.js"></script>
         <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/js/sweet-alert.css">
-    
+        <link rel="stylesheet" href="/home/saloni/forum/QAforum/static/css/pvwd.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style4.css" />
+     
+      <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style33.css" />
+
 </head>
-<body>
+ <body >
 
 {% ifequal changed "wrong" %}
-<h4 style = "color :red" > Enter Correct password </h4>
+
 <script>
-swal( { type: "error" title :"Enter correct password !", timer: 1000, });
+swal({
+  title: "Error!",
+  text: "Enter Correct Password",
+  type: "error",
+  timer: 1000,
+});
 </script>
 {% endifequal  %}
-<form action="/forum/changepassword/" method="POST">
+
+         <div class="header">
+            <div class="header_resize">
+               <div class="logo">
+                  <h1><a href="index.html"><i><span>Solution</span> Bag <small></i>Every Question has a Jhakkas <span>Solution!!</span></small></a></h1>
+               </div>
+               <div class="menu_nav">
+                  <ul>
+                      <li><a href="/forum/logout">Logout</a></li>
+                     
+                        <li><a href="/forum/profile/">Profile</a></li>
+                       
+                      
+                     
+                     <li><a href="/forum/recent/">Recent Activity</a></li>
+                      <div class="main-nav">
+                      <li><a class="cd-signin" href="#0">Post Your Question</a></li>
+                      </div>
+         
+                    
+                    <li><a href="/forum/About">About Us</a></li>
+                   <li><a href="/forum/home/" class="active">Home</a></li>
+                   
+                  </ul>
+               </div>
+               <div class="clr"></div>
+            </div>
+         </div>
+
+
+
+
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      
+
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form" method="get" action="/forum/question">
+          <p class="fieldset">
+            
+            <input class="full-width has-padding has-border" id="signin-email" type="text" name="postt" required placeholder="Your Question">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          
+
+          <p class="fieldset">
+            <input class="full-width"  type="submit" value="Go">
+          </p>
+        </form>
+        
+        
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      
+
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+       <!-- cd-signup -->
+
+      
+
+        
+
+        
+      <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div>
+
+
+</head>
+<body>
+ 
+
+<div class= "box ">
+<h2 class="heading">
+
+Change Your Password</h2>
+<img src="/home/saloni/forum/QAforum/static/images/divider.png" width="50%" height="5%">
+
+<form id="user_form" action="/forum/changepassword/" method="POST">
    {% csrf_token %}
+
 <input type="password" placeholder="old passsword" name="opwd"><br/>
 <input type="password" placeholder="new password" name="npwd"><br/>
 
 <input type="submit" value="change">
 </form>
+
+
+</div>
+</div>
 </body>
 </html> 
 
